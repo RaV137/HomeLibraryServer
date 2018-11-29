@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-public class CreateUserDto {
+public class RegisterUserDto {
 
     @NotNull
     private String login;

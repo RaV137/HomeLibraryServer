@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users", schema = "home_library")
+@Table(name = "users", schema = "hls")
 @Data
 public class User {
 
@@ -25,7 +25,7 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "premium")
+    @Column(name = "has_premium")
     private Boolean premium;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)

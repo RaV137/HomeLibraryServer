@@ -9,7 +9,7 @@
 -- CREATE SCHEMA hls;
 -- ALTER SCHEMA hls OWNER TO postgres;
 
--- SET search_path TO hls, "$user", public;
+-- SET search_path TO hls;
 
 -- tworzenie tabel
 

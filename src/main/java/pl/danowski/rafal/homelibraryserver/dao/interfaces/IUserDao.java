@@ -1,8 +1,8 @@
-package pl.danowski.rafal.homelibraryserver.service.interfaces;
+package pl.danowski.rafal.homelibraryserver.dao.interfaces;
 
 import pl.danowski.rafal.homelibraryserver.model.User;
 
-public interface IUserService {
+public interface IUserDao {
 
     User getByLogin(String login);
 
@@ -13,4 +13,5 @@ public interface IUserService {
     User updateUser(User user);
 
     User deleteUser(String login);
+
 }
