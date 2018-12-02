@@ -9,6 +9,8 @@ public interface IBookService {
 
     GBABookDto findGBABookById(String id);
 
+    Book findBookById(Integer id);
+
     List<GBABookDto> findGBABooksBySearch(String search);
 
     List<Book> findBooksByUserLogin(String login);
@@ -17,6 +19,6 @@ public interface IBookService {
 
     Book modifyBook(Book book);
 
-    Book deleteBook(Book book);
+    Book deleteBook(Integer id);
 
 }

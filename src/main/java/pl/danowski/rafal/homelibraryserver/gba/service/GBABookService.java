@@ -1,8 +1,8 @@
-package pl.danowski.rafal.homelibraryserver.service;
+package pl.danowski.rafal.homelibraryserver.gba.service;
 
 import org.springframework.stereotype.Service;
 import pl.danowski.rafal.homelibraryserver.dto.gba.GBABookDto;
-import pl.danowski.rafal.homelibraryserver.service.interfaces.IGBABookService;
+import pl.danowski.rafal.homelibraryserver.gba.service.interfaces.IGBABookService;
 
 import java.util.List;
 
