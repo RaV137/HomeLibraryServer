@@ -23,12 +23,14 @@ public class GeneralExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleException(Exception ex) {
 
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
         ErrorResponse error = new ErrorResponse(
-                HttpStatus.NOT_FOUND.value(),
+                status.value(),
                 ex.getMessage(),
                 System.currentTimeMillis());
 
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(error, status);
     }
 
 }

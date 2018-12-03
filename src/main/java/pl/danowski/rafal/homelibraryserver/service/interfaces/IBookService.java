@@ -11,7 +11,7 @@ public interface IBookService {
 
     Book findBookById(Integer id);
 
-    List<GBABookDto> findGBABooksBySearch(String search);
+    List<GBABookDto> findGBABooksByQuery(String query);
 
     List<Book> findBooksByUserLogin(String login);
 

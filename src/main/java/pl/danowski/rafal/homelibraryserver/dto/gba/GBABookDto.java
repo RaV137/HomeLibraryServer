@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 /**
  *  Google Books Api Book Dto
@@ -27,7 +26,7 @@ public class GBABookDto {
     private String publisher;
 
     @NotNull
-    private Date publishedDate;
+    private String publishedYear;
     private String description;
 
     @NotNull

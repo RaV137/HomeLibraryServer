@@ -1,4 +1,4 @@
-package pl.danowski.rafal.homelibraryserver.gba.service.interfaces;
+package pl.danowski.rafal.homelibraryserver.service.interfaces;
 
 import pl.danowski.rafal.homelibraryserver.dto.gba.GBABookDto;
 

@@ -8,7 +8,7 @@ import pl.danowski.rafal.homelibraryserver.dto.gba.GBABookDto;
 import pl.danowski.rafal.homelibraryserver.model.Book;
 import pl.danowski.rafal.homelibraryserver.model.User;
 import pl.danowski.rafal.homelibraryserver.service.interfaces.IBookService;
-import pl.danowski.rafal.homelibraryserver.gba.service.interfaces.IGBABookService;
+import pl.danowski.rafal.homelibraryserver.service.interfaces.IGBABookService;
 
 import java.util.List;
 
@@ -35,8 +35,8 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public List<GBABookDto> findGBABooksBySearch(String search) {
-        return service.findGBABooksSearch(search);
+    public List<GBABookDto> findGBABooksByQuery(String query) {
+        return service.findGBABooksSearch(query);
     }
 
     @Override

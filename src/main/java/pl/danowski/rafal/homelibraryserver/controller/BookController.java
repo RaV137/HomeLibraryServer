@@ -35,6 +35,13 @@ public class BookController {
         return new ResponseEntity<>(book, HttpStatus.OK);
     }
 
+    @GetMapping("/query/{query}")
+    @ApiOperation("Searches for books in Google Books Api by given query - limit = 20 books")
+    public ResponseEntity<List<GBABookDto>> findBooksByQuery(@PathVariable("query") String query) {
+        List<GBABookDto> list = service.findGBABooksByQuery(query);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
     @GetMapping("/user/{login}")
     @ApiOperation("Finds all books for particular user")
     public ResponseEntity<List<BookDto>> getAllForUser(@PathVariable("login") String login) {
