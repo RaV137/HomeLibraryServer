@@ -87,11 +87,9 @@ public class GBABookService implements IGBABookService {
 
         book.setId(volume.getId());
         book.setTitle(info.getTitle());
-        book.setSubtitle(info.getSubtitle());
         book.setAuthor(listContentToString(info.getAuthors()));
         book.setPublisher(info.getPublisher());
         book.setPublishedYear(getYearFromDateString(info.getPublishedDate()));
-        book.setDescription(info.getDescription());
         book.setIsbn13(getISBN13FromIndustryIdentifiers(info.getIndustryIdentifiers()));
         book.setPageCount(info.getPageCount());
 

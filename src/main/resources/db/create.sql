@@ -1,15 +1,18 @@
 -- DROP DATABASE IF EXISTS home_library_server CASCADE;
-
+--
 -- CREATE DATABASE home_library_server;
 -- CREATE USER hls_admin WITH ENCRYPTED PASSWORD 'HlsAdmin1';
 -- GRANT ALL PRIVILEGES ON DATABASE home_library_server TO hls_admin;
-
+--
 -- DROP SCHEMA IF EXISTS hls CASCADE;
-
+--
 -- CREATE SCHEMA hls;
--- ALTER SCHEMA hls OWNER TO postgres;
+-- ALTER SCHEMA hls OWNER TO hls_admin;
 
--- SET search_path TO hls;
+ALTER database home_library_server SET search_path TO hls;
+ALTER role hls_admin SET search_path TO hls;
+
+SET search_path TO hls;
 
 -- tworzenie tabel
 
@@ -72,10 +75,17 @@ ALTER TABLE users ADD CONSTRAINT UQ_email UNIQUE (email);
 ALTER TABLE books ADD CONSTRAINT UQ_books UNIQUE (id_google_books_api, id_user, id_room);
 
 -- tworzenie sekwencji
-DROP SEQUENCE IF EXISTS seq_positions;
+DROP SEQUENCE IF EXISTS seq_books;
 DROP SEQUENCE IF EXISTS seq_rooms;
 DROP SEQUENCE IF EXISTS seq_users;
 
 CREATE SEQUENCE seq_books INCREMENT 1 START 1;
 CREATE SEQUENCE seq_rooms INCREMENT 1 START 1;
 CREATE SEQUENCE seq_users INCREMENT 1 START 1;
+
+
+ALTER TABLE books OWNER TO hls_admin;
+ALTER TABLE users OWNER TO hls_admin;
+ALTER TABLE rooms OWNER TO hls_admin;
+
+GRANT ALL ON ALL SEQUENCES IN SCHEMA hls TO hls_admin;

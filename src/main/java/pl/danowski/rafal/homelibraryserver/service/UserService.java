@@ -24,6 +24,7 @@ public class UserService implements IUserService {
 
     @Override
     public User registerUser(User user) {
+        user.setPremium(false);
         return dao.registerUser(user);
     }
 

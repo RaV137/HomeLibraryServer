@@ -17,7 +17,6 @@ public class GBABookDto {
 
     @NotNull
     private String title;
-    private String subtitle;
 
     @NotNull
     private String author;
@@ -27,7 +26,6 @@ public class GBABookDto {
 
     @NotNull
     private String publishedYear;
-    private String description;
 
     @NotNull
     private String isbn13;

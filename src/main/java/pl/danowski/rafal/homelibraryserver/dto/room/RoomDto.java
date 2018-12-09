@@ -22,6 +22,6 @@ public class RoomDto {
     private String shortName;
 
     @NotNull
-    private String userId;
+    private Integer userId;
 
 }

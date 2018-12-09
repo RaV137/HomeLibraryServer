@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.danowski.rafal.homelibraryserver.dto.user.RegisterEditUserDto;
 import pl.danowski.rafal.homelibraryserver.dto.user.UserDto;
 import pl.danowski.rafal.homelibraryserver.model.User;
 import pl.danowski.rafal.homelibraryserver.service.interfaces.IUserService;
@@ -41,14 +40,14 @@ public class UserController {
 
     @PostMapping
     @ApiOperation("Register new user")
-    public ResponseEntity<UserDto> registerNewUser(@Valid @RequestBody RegisterEditUserDto user) {
+    public ResponseEntity<UserDto> registerNewUser(@Valid @RequestBody UserDto user) {
         User registeredUser = service.registerUser(convertFromDto(user));
         return new ResponseEntity<>(convertToDto(registeredUser), HttpStatus.CREATED);
     }
 
     @PatchMapping("/{login}")
     @ApiOperation("Update user")
-    public ResponseEntity<UserDto> updateUser(@PathVariable("login") String login, @Valid @RequestBody RegisterEditUserDto userDto) {
+    public ResponseEntity<UserDto> updateUser(@PathVariable("login") String login, @Valid @RequestBody UserDto userDto) {
         User userToUpdate = service.getByLogin(login);
         mapper.map(userDto, userToUpdate);
         User updatedUser = service.updateUser(userToUpdate);
@@ -66,7 +65,7 @@ public class UserController {
         return mapper.map(user, UserDto.class);
     }
 
-    private User convertFromDto(RegisterEditUserDto dto) {
+    private User convertFromDto(UserDto dto) {
         return mapper.map(dto, User.class);
     }
 

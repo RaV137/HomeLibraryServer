@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.danowski.rafal.homelibraryserver.dto.book.BookDto;
-import pl.danowski.rafal.homelibraryserver.dto.book.CreateBookDto;
 import pl.danowski.rafal.homelibraryserver.dto.gba.GBABookDto;
 import pl.danowski.rafal.homelibraryserver.model.Book;
 import pl.danowski.rafal.homelibraryserver.service.interfaces.IBookService;
@@ -51,7 +50,7 @@ public class BookController {
 
     @PostMapping
     @ApiOperation("Create new book")
-    public ResponseEntity<BookDto> createNewBook(@Valid @RequestBody CreateBookDto createBook) {
+    public ResponseEntity<BookDto> createNewBook(@Valid @RequestBody BookDto createBook) {
         Book book = convertFromDto(createBook);
         Book registeredBook = service.addBook(book);
         return new ResponseEntity<>(convertToDto(registeredBook), HttpStatus.CREATED);
@@ -77,7 +76,7 @@ public class BookController {
         return mapper.map(book, BookDto.class);
     }
 
-    private Book convertFromDto(CreateBookDto dto) {
+    private Book convertFromDto(BookDto dto) {
         return mapper.map(dto, Book.class);
     }
 
