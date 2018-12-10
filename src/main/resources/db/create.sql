@@ -39,7 +39,7 @@ CREATE TABLE hls.rooms (
 	id_user integer NOT NULL, -- identyfikator użytkownika
 	name varchar(255) NOT NULL, -- nazwa pokoju
 	short_name varchar(3) NOT NULL, -- skrót nazwy pokoju
-	color varchar(7) NOT NULL -- kolor przypisany do pokoju (postać: "#xxxxxx", gdzie x to znak z zakresu 0-9 i a-f)
+	colour varchar(7) NOT NULL -- kolor przypisany do pokoju (postać: "#xxxxxx", gdzie x to znak z zakresu 0-9 i a-f)
 );
 
 DROP TABLE IF EXISTS users CASCADE;

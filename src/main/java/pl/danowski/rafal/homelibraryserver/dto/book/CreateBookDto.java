@@ -21,7 +21,6 @@ public class CreateBookDto {
     @NotNull
     private String googleBooksId;
 
-    @NotNull
     private Integer rating;
 
     @NotNull

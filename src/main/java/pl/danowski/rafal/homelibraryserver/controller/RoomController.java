@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import pl.danowski.rafal.homelibraryserver.dto.room.CreateRoomDto;
 import pl.danowski.rafal.homelibraryserver.dto.room.RoomDto;
 import pl.danowski.rafal.homelibraryserver.model.Room;
+import pl.danowski.rafal.homelibraryserver.model.User;
 import pl.danowski.rafal.homelibraryserver.service.interfaces.IRoomService;
+import pl.danowski.rafal.homelibraryserver.service.interfaces.IUserService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,6 +25,9 @@ public class RoomController {
 
     @Autowired
     private IRoomService service;
+
+    @Autowired
+    private final IUserService userService;
 
     @Autowired
     private final MapperFacade mapper;
@@ -66,11 +71,16 @@ public class RoomController {
     }
 
     private RoomDto convertToDto(Room room) {
-        return mapper.map(room, RoomDto.class);
+        RoomDto dto = mapper.map(room, RoomDto.class);
+        dto.setUserId(room.getUser().getId());
+        return dto;
     }
 
     private Room convertFromDto(CreateRoomDto dto) {
-        return mapper.map(dto, Room.class);
+        Room room = mapper.map(dto, Room.class);
+        User user = userService.getById(dto.getUserId());
+        room.setUser(user);
+        return room;
     }
 
 }

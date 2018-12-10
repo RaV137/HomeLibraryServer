@@ -3,9 +3,10 @@ package pl.danowski.rafal.homelibraryserver.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "rooms", schema = "home_library")
+@Table(name = "rooms", schema = "hls")
 @Data
 public class Room {
 
@@ -22,10 +23,12 @@ public class Room {
     private String colour;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_user")
     private User user;
 
     @Column(name = "shortName")
     private String shortName;
 
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+    private List<Book> books;
 }

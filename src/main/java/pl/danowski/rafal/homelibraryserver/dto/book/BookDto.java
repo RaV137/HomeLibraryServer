@@ -24,7 +24,6 @@ public class BookDto {
     @NotNull
     private String googleBooksId;
 
-    @NotNull
     private Integer rating;
 
     @NotNull

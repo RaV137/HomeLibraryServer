@@ -20,7 +20,7 @@ public class BookDao implements IBookDao {
 
     @Override
     public List<Book> findByUserId(Integer id) {
-        final String query = "FROM Book AS b WHERE b.id_uzytkownika = :id";
+        final String query = "FROM Book AS b WHERE b.user.id = :id";
         return (List<Book>) em.createQuery(query)
                 .setParameter("id", id)
                 .getResultList();

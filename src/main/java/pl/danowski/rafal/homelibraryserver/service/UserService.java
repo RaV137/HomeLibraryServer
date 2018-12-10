@@ -37,4 +37,9 @@ public class UserService implements IUserService {
     public User deleteUser(String login) {
         return dao.deleteUser(login);
     }
+
+    @Override
+    public User getById(Integer id) {
+        return dao.findById(id);
+    }
 }

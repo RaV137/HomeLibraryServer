@@ -13,4 +13,6 @@ public interface IUserService {
     User updateUser(User user);
 
     User deleteUser(String login);
+
+    User getById(Integer id);
 }

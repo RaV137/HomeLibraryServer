@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "books", schema = "home_library")
+@Table(name = "books", schema = "hls")
 @Data
 public class Book {
 
@@ -21,10 +21,10 @@ public class Book {
     @Column(name = "author")
     private String author;
 
-    @Column(name = "shelf_number")
+    @Column(name = "shelf")
     private Integer shelfNumber;
 
-    @Column(name = "google_books_id")
+    @Column(name = "id_google_books_api")
     private String googleBooksId;
 
     @Column(name = "rating")
@@ -33,15 +33,15 @@ public class Book {
     @Column(name = "favourite")
     private Boolean favourite;
 
-    @Column(name = "read")
+    @Column(name = "is_read")
     private Boolean read;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_user")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "id_room")
     private Room room;
 
 

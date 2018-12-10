@@ -11,7 +11,11 @@ import pl.danowski.rafal.homelibraryserver.dto.book.BookDto;
 import pl.danowski.rafal.homelibraryserver.dto.book.CreateBookDto;
 import pl.danowski.rafal.homelibraryserver.dto.gba.GBABookDto;
 import pl.danowski.rafal.homelibraryserver.model.Book;
+import pl.danowski.rafal.homelibraryserver.model.Room;
+import pl.danowski.rafal.homelibraryserver.model.User;
 import pl.danowski.rafal.homelibraryserver.service.interfaces.IBookService;
+import pl.danowski.rafal.homelibraryserver.service.interfaces.IRoomService;
+import pl.danowski.rafal.homelibraryserver.service.interfaces.IUserService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,6 +28,12 @@ public class BookController {
 
     @Autowired
     private final IBookService service;
+
+    @Autowired
+    private IRoomService roomService;
+
+    @Autowired
+    private final IUserService userService;
 
     @Autowired
     private final MapperFacade mapper;
@@ -74,11 +84,19 @@ public class BookController {
     }
 
     private BookDto convertToDto(Book book) {
-        return mapper.map(book, BookDto.class);
+        BookDto dto = mapper.map(book, BookDto.class);
+        dto.setUserId(book.getUser().getId());
+        dto.setRoomId(book.getRoom().getId());
+        return dto;
     }
 
     private Book convertFromDto(CreateBookDto dto) {
-        return mapper.map(dto, Book.class);
+        Book book = mapper.map(dto, Book.class);
+        User user = userService.getById(dto.getUserId());
+        Room room = roomService.getById(dto.getRoomId());
+        book.setUser(user);
+        book.setRoom(room);
+        return book;
     }
 
 }

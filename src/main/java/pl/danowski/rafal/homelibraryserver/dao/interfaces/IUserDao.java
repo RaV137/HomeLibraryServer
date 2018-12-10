@@ -14,4 +14,5 @@ public interface IUserDao {
 
     User deleteUser(String login);
 
+    User findById(Integer id);
 }

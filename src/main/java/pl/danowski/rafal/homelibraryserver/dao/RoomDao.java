@@ -19,7 +19,7 @@ public class RoomDao implements IRoomDao {
 
     @Override
     public List<Room> findByUserId(Integer id) {
-        final String query = "FROM Room AS r WHERE r.id_uzytkownika = :id";
+        final String query = "FROM Room AS r WHERE r.user.id = :id";
         return (List<Room>) em.createQuery(query)
                 .setParameter("id", id)
                 .getResultList();
