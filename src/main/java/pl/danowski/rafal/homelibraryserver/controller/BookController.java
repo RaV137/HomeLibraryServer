@@ -53,7 +53,7 @@ public class BookController {
     }
 
     @GetMapping("/user/{login}")
-    @ApiOperation("Finds all books for particular user")
+    @ApiOperation("Finds all books for a particular user")
     public ResponseEntity<List<BookDto>> getAllForUser(@PathVariable("login") String login) {
         List<Book> books = service.findBooksByUserLogin(login);
         return new ResponseEntity<>(books.stream().map(this::convertToDto).collect(Collectors.toList()), HttpStatus.OK);
@@ -67,9 +67,10 @@ public class BookController {
         return new ResponseEntity<>(convertToDto(registeredBook), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping
     @ApiOperation("Update book")
-    public ResponseEntity<BookDto> updateBook(@PathVariable("id") Integer id, @Valid @RequestBody BookDto bookDto) {
+    public ResponseEntity<BookDto> updateBook(@Valid @RequestBody BookDto bookDto) {
+        int id = bookDto.getId();
         Book bookToUpdate = service.findBookById(id);
         mapper.map(bookDto, bookToUpdate);
         Book updatedBook = service.modifyBook(bookToUpdate);

@@ -54,9 +54,10 @@ public class RoomController {
         return new ResponseEntity<>(convertToDto(registeredRoom), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping
     @ApiOperation("Update room")
-    public ResponseEntity<RoomDto> updateRoom(@PathVariable("id") Integer id, @Valid @RequestBody RoomDto roomDto) {
+    public ResponseEntity<RoomDto> updateRoom(@Valid @RequestBody RoomDto roomDto) {
+        int id = roomDto.getId();
         Room roomToUpdate = service.getById(id);
         mapper.map(roomDto, roomToUpdate);
         Room updatedRoom = service.updateRoom(roomToUpdate);

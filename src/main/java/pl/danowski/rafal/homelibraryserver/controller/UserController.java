@@ -46,10 +46,11 @@ public class UserController {
         return new ResponseEntity<>(convertToDto(registeredUser), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{login}")
+    @PatchMapping
     @ApiOperation("Update user")
-    public ResponseEntity<UserDto> updateUser(@PathVariable("login") String login, @Valid @RequestBody UserDto userDto) {
-        User userToUpdate = service.getByLogin(login);
+    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto) {
+        int id = userDto.getId();
+        User userToUpdate = service.getById(id);
         mapper.map(userDto, userToUpdate);
         User updatedUser = service.updateUser(userToUpdate);
         return new ResponseEntity<>(convertToDto(updatedUser), HttpStatus.OK);

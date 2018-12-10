@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Data
 public class Book {
 
-    @SequenceGenerator(name="seq_books", sequenceName="seq_books")
+    @SequenceGenerator(name="seq_books", sequenceName="seq_books", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_books")
     @Id
     @Column(name = "id")

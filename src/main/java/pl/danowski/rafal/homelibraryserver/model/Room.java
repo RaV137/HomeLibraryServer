@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class Room {
 
-    @SequenceGenerator(name="seq_rooms", sequenceName="seq_rooms")
+    @SequenceGenerator(name="seq_rooms", sequenceName="seq_rooms", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_rooms")
     @Id
     @Column(name = "id")

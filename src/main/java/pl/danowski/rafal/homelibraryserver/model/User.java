@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class User {
 
-    @SequenceGenerator(name="seq_users", sequenceName="seq_users")
+    @SequenceGenerator(name="seq_users", sequenceName="seq_users", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_users")
     @Id
     @Column(name = "id")
