@@ -25,12 +25,9 @@ public class GBABookDto {
     private String publisher;
 
     @NotNull
-    private String publishedYear;
-
-    @NotNull
     private String isbn13;
 
-    @NotNull
+    private String publishedYear;
     private Integer pageCount;
     private String smallThumbnailURL;
     private String thumbnailURL;

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.danowski.rafal.homelibraryserver.dto.user.CreateUserDto;
 import pl.danowski.rafal.homelibraryserver.dto.user.UserDto;
 import pl.danowski.rafal.homelibraryserver.model.User;
 import pl.danowski.rafal.homelibraryserver.service.interfaces.IUserService;
@@ -40,7 +41,7 @@ public class UserController {
 
     @PostMapping
     @ApiOperation("Register new user")
-    public ResponseEntity<UserDto> registerNewUser(@Valid @RequestBody UserDto user) {
+    public ResponseEntity<UserDto> registerNewUser(@Valid @RequestBody CreateUserDto user) {
         User registeredUser = service.registerUser(convertFromDto(user));
         return new ResponseEntity<>(convertToDto(registeredUser), HttpStatus.CREATED);
     }
@@ -65,7 +66,7 @@ public class UserController {
         return mapper.map(user, UserDto.class);
     }
 
-    private User convertFromDto(UserDto dto) {
+    private User convertFromDto(CreateUserDto dto) {
         return mapper.map(dto, User.class);
     }
 

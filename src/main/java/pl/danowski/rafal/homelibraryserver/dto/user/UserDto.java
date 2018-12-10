@@ -10,6 +10,9 @@ import javax.validation.constraints.NotNull;
 public class UserDto {
 
     @NotNull
+    private Integer id;
+
+    @NotNull
     private String login;
 
     @NotNull
