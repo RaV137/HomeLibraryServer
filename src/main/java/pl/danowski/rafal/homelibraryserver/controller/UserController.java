@@ -26,21 +26,21 @@ public class UserController {
     private final MapperFacade mapper;
 
     @GetMapping("/login/{login}")
-    @ApiOperation("Find a user by login")
+    @ApiOperation("Finds a user by login")
     public ResponseEntity<UserDto> getByLogin(@PathVariable("login") String login) {
         User user = service.getByLogin(login);
         return new ResponseEntity<>(convertToDto(user), HttpStatus.OK);
     }
 
     @GetMapping("/email/{email}")
-    @ApiOperation("Find a user by email")
+    @ApiOperation("Finds a user by email")
     public ResponseEntity<UserDto> getByEmail(@PathVariable("email") String email) {
         User user = service.getByEmail(email);
         return new ResponseEntity<>(convertToDto(user), HttpStatus.OK);
     }
 
     @PostMapping
-    @ApiOperation("Register new user")
+    @ApiOperation("Registers new user")
     public ResponseEntity<UserDto> registerNewUser(@Valid @RequestBody CreateUserDto user) {
         User registeredUser = service.registerUser(convertFromDto(user));
         return new ResponseEntity<>(convertToDto(registeredUser), HttpStatus.CREATED);
@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{login}")
-    @ApiOperation("Deregister and delete user")
+    @ApiOperation("Deregisters and delete user")
     public ResponseEntity<UserDto> deregisterUser(@PathVariable("login") String login) {
         User user = service.deleteUser(login);
         return new ResponseEntity<>(convertToDto(user), HttpStatus.OK);

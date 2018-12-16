@@ -39,10 +39,17 @@ public class BookController {
     private final MapperFacade mapper;
 
     @GetMapping("/{id}")
-    @ApiOperation("Find book from Google Books Api by its id")
+    @ApiOperation("Finds book from Google Books Api by its id")
     public ResponseEntity<GBABookDto> findBookByGBAId(@PathVariable("id") String id) {
         GBABookDto book = service.findGBABookById(id);
         return new ResponseEntity<>(book, HttpStatus.OK);
+    }
+
+    @GetMapping("/id/{id}")
+    @ApiOperation("Finds book by id")
+    public ResponseEntity<BookDto> findBookById(@PathVariable("id") Integer id) {
+        Book book = service.findBookById(id);
+        return new ResponseEntity<>(convertToDto(book), HttpStatus.OK);
     }
 
     @GetMapping("/query/{query}")
@@ -60,7 +67,7 @@ public class BookController {
     }
 
     @PostMapping
-    @ApiOperation("Create new book")
+    @ApiOperation("Creates new book")
     public ResponseEntity<BookDto> createNewBook(@Valid @RequestBody CreateBookDto createBook) {
         Book book = convertFromDto(createBook);
         Book registeredBook = service.addBook(book);
@@ -68,7 +75,7 @@ public class BookController {
     }
 
     @PatchMapping
-    @ApiOperation("Update book")
+    @ApiOperation("Updates book")
     public ResponseEntity<BookDto> updateBook(@Valid @RequestBody BookDto bookDto) {
         int id = bookDto.getId();
         Book bookToUpdate = service.findBookById(id);
@@ -78,7 +85,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation("Delete book")
+    @ApiOperation("Deletes book")
     public ResponseEntity<BookDto> deleteBook(@PathVariable("id") Integer id) {
         Book book = service.deleteBook(id);
         return new ResponseEntity<>(convertToDto(book), HttpStatus.OK);

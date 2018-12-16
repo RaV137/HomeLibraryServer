@@ -33,21 +33,21 @@ public class RoomController {
     private final MapperFacade mapper;
 
     @GetMapping("/user/{login}")
-    @ApiOperation("Find all rooms by user login")
+    @ApiOperation("Finds all rooms by user login")
     public ResponseEntity<List<RoomDto>> getAllByLogin(@PathVariable("login") String login) {
         List<Room> rooms = service.findByUserLogin(login);
         return new ResponseEntity<>(rooms.stream().map(this::convertToDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @ApiOperation("Find a room by id")
+    @ApiOperation("Finds a room by id")
     public ResponseEntity<RoomDto> getByEmail(@PathVariable("id") Integer id) {
         Room room = service.getById(id);
         return new ResponseEntity<>(convertToDto(room), HttpStatus.OK);
     }
 
     @PostMapping
-    @ApiOperation("Create new room")
+    @ApiOperation("Creates new room")
     public ResponseEntity<RoomDto> createNewRoom(@Valid @RequestBody CreateRoomDto createRoom) {
         Room room = convertFromDto(createRoom);
         Room registeredRoom = service.createRoom(room);
@@ -55,7 +55,7 @@ public class RoomController {
     }
 
     @PatchMapping
-    @ApiOperation("Update room")
+    @ApiOperation("Updates room")
     public ResponseEntity<RoomDto> updateRoom(@Valid @RequestBody RoomDto roomDto) {
         int id = roomDto.getId();
         Room roomToUpdate = service.getById(id);
@@ -65,7 +65,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation("Delete room")
+    @ApiOperation("Deletes room")
     public ResponseEntity<RoomDto> deleteRoom(@PathVariable("id") Integer id) {
         Room room = service.deleteRoom(id);
         return new ResponseEntity<>(convertToDto(room), HttpStatus.OK);
