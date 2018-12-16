@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Data
 public class Book {
 
-    @SequenceGenerator(name="seq_books", sequenceName="seq_books", allocationSize = 1)
+    @SequenceGenerator(name = "seq_books", sequenceName = "seq_books", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_books")
     @Id
     @Column(name = "id")
@@ -35,6 +35,9 @@ public class Book {
 
     @Column(name = "is_read")
     private Boolean read;
+
+    @Column(name = "thumbnail")
+    private String smallImageUrl;
 
     @ManyToOne
     @JoinColumn(name = "id_user")

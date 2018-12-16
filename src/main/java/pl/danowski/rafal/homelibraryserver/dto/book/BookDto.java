@@ -38,4 +38,6 @@ public class BookDto {
     @NotNull
     private Integer roomId;
 
+    private String smallImageUrl;
+
 }

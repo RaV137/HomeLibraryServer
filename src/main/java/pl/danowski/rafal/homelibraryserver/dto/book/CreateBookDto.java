@@ -34,4 +34,6 @@ public class CreateBookDto {
 
     @NotNull
     private Integer roomId;
+
+    private String smallImageUrl;
 }
