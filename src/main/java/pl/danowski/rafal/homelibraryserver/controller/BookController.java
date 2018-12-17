@@ -80,6 +80,10 @@ public class BookController {
         int id = bookDto.getId();
         Book bookToUpdate = service.findBookById(id);
         mapper.map(bookDto, bookToUpdate);
+        User user = userService.getById(bookDto.getUserId());
+        Room room = roomService.getById(bookDto.getRoomId());
+        bookToUpdate.setUser(user);
+        bookToUpdate.setRoom(room);
         Book updatedBook = service.modifyBook(bookToUpdate);
         return new ResponseEntity<>(convertToDto(updatedBook), HttpStatus.OK);
     }
