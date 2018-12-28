@@ -3,7 +3,6 @@ package pl.danowski.rafal.homelibraryserver.dao;
 import org.springframework.stereotype.Repository;
 import pl.danowski.rafal.homelibraryserver.dao.interfaces.IBookDao;
 import pl.danowski.rafal.homelibraryserver.model.Book;
-import pl.danowski.rafal.homelibraryserver.model.Room;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
