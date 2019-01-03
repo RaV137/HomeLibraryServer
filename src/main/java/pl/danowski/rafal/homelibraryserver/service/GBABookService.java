@@ -7,13 +7,14 @@ import com.google.api.services.books.Books;
 import com.google.api.services.books.BooksRequestInitializer;
 import com.google.api.services.books.model.Volume;
 import com.google.api.services.books.model.Volumes;
+import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pl.danowski.rafal.homelibraryserver.dto.gba.GBABookDto;
 import pl.danowski.rafal.homelibraryserver.service.interfaces.IGBABookService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class GBABookService implements IGBABookService {
@@ -54,9 +55,16 @@ public class GBABookService implements IGBABookService {
         return book;
     }
 
+    private String deAccent(String str) {
+        String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(nfdNormalizedString).replaceAll("");
+    }
+
     @Override
     public List<GBABookDto> findGBABooksSearch(String query) {
         initializeBooks();
+        query = deAccent(query);
         List<GBABookDto> booksList = new ArrayList<>();
 
         try {
@@ -64,13 +72,13 @@ public class GBABookService implements IGBABookService {
             volumesList.setMaxResults(20L);
 
             Volumes volumes = volumesList.execute();
-//            if (volumes.getTotalItems() == 0 || volumes.getItems() == null) {
-//                System.out.println("No matches found.");
-//            }
+            //            if (volumes.getTotalItems() == 0 || volumes.getItems() == null) {
+            //                System.out.println("No matches found.");
+            //            }
 
             for (Volume volume : volumes.getItems()) {
                 GBABookDto book = getBookFromVolume(volume);
-                if(book != null) {
+                if (book != null) {
                     booksList.add(book);
                 }
             }
@@ -81,7 +89,7 @@ public class GBABookService implements IGBABookService {
         return booksList;
     }
 
-    private GBABookDto getBookFromVolume(Volume volume){
+    private GBABookDto getBookFromVolume(Volume volume) {
         GBABookDto book = new GBABookDto();
         Volume.VolumeInfo info = volume.getVolumeInfo();
 
@@ -94,7 +102,7 @@ public class GBABookService implements IGBABookService {
         book.setPageCount(info.getPageCount());
 
         Volume.VolumeInfo.ImageLinks imageLinks = info.getImageLinks();
-        if(imageLinks != null) {
+        if (imageLinks != null) {
             book.setSmallThumbnailURL(imageLinks.getSmallThumbnail());
             book.setThumbnailURL(imageLinks.getThumbnail());
         } else {
@@ -104,7 +112,7 @@ public class GBABookService implements IGBABookService {
 
         book.setPreviewLinkURL(info.getPreviewLink());
 
-        if(!isBookValid(book)) {
+        if (!isBookValid(book)) {
             return null;
         }
 
