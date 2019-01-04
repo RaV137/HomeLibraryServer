@@ -7,14 +7,15 @@ import com.google.api.services.books.Books;
 import com.google.api.services.books.BooksRequestInitializer;
 import com.google.api.services.books.model.Volume;
 import com.google.api.services.books.model.Volumes;
-import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pl.danowski.rafal.homelibraryserver.dto.gba.GBABookDto;
 import pl.danowski.rafal.homelibraryserver.service.interfaces.IGBABookService;
+
+import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class GBABookService implements IGBABookService {

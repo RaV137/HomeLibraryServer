@@ -2,13 +2,11 @@ package pl.danowski.rafal.homelibraryserver.dao;
 
 import org.springframework.stereotype.Repository;
 import pl.danowski.rafal.homelibraryserver.dao.interfaces.IUserDao;
-import pl.danowski.rafal.homelibraryserver.model.Room;
 import pl.danowski.rafal.homelibraryserver.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Repository
 @Transactional

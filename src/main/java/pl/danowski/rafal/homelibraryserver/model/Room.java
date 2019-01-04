@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class Room {
 
-    @SequenceGenerator(name="seq_rooms", sequenceName="seq_rooms", allocationSize = 1)
+    @SequenceGenerator(name = "seq_rooms", sequenceName = "seq_rooms", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_rooms")
     @Id
     @Column(name = "id")
@@ -29,6 +29,6 @@ public class Room {
     @Column(name = "shortName")
     private String shortName;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<Book> books;
 }

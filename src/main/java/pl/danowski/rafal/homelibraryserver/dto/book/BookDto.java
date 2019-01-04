@@ -1,7 +1,7 @@
 package pl.danowski.rafal.homelibraryserver.dto.book;
 
 import lombok.Getter;
-        import lombok.Setter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 

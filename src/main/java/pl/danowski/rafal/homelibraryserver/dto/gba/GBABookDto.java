@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 
 /**
- *  Google Books Api Book Dto
+ * Google Books Api Book Dto
  */
 @Getter
 @Setter

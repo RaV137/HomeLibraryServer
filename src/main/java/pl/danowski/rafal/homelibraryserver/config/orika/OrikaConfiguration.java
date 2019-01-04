@@ -48,7 +48,8 @@ public abstract class OrikaConfiguration extends ConfigurableMapper implements A
         converterFactory.registerConverter(new FromStringConverter());
     }
 
-    @Override public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         addAllSpringBeans(applicationContext);
     }
 
